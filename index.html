@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>toio™Core Cube Sound Checker</title>
+
+    <!-- Webapp settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favion -->
+    <link rel="icon" href="./images/favicon.ico">
+
+    <!-- Stylesheet -->
+    <link href="https://cdn.muicss.com/mui-0.10.0/css/mui.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://cdn.muicss.com/mui-0.10.0/js/mui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+
+    <!-- dropify(overrides file input) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.rawgit.com/JeremyFagis/dropify/master/dist/css/dropify.min.css'/>
+    <script src='https://cdn.rawgit.com/JeremyFagis/dropify/master/dist/js/dropify.min.js'></script>
+
+    <!-- Code prettify -->
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+
+    <!-- For parsing MIDI file -->
+
+  </head>
+
+  <body>
+    <!-- Title -->
+    <div id="titleText" class="titleText">
+      toio™Core Cube Sound Checker
+    </div>
+
+    <!-- Description -->
+    <div id="descriptionText" class="descriptionText">
+      MIDI音源などを使ってtoio™Core CubeのSound機能をチェックできるツール<br>
+      A tool enables us to check sound function of toio™Core Cube by using MIDI audio source and so on.
+    </div>
+
+    <!-- Operation -->
+    <table><tr>
+      <!-- Left region: Main functions -->
+      <td>
+        <div id="operation" class="operation">
+          <div class="operationTitleText">
+            1. Connect toio™Core Cube.
+          </div>
+          <div class="operationContent">
+            <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" id="btConnectCube1">Connect Cube 1</button>
+            <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" disabled id="btConnectCube2">Connect Cube 2</button>
+            <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" disabled id="btConnectCube3">Connect Cube 3</button>
+          </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+      </td>
+      <td>
+        </td>
+      <td>
+        <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" disabled id="btMoveFW">↑</button>
+      </td>
+      </tr>
+      <tr>
+        <td></td>
+      <td>
+        <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" disabled id="btMoveL">←</button>
+      </td>
+      <td></td>
+      <td>
+        <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" disabled id="btMoveR">→</button>
+      </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td>
+        <button class="mui-btn mui-btn--small mui-btn--primary mui-btn--raised" disabled id="btMoveB">↓</button>
+
+      </td>
+    </tr>
+    <script type="text/javascript" src="index.js"></script>
+    </body>
