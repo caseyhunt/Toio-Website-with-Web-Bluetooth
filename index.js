@@ -7,7 +7,7 @@ const gCubes = [ undefined, undefined, undefined ];
 
 
 var slider1 = document.getElementById("slider1");
-var val = 0xff;
+var speed1 = 0xff;
 
   const SERVICE_UUID              = '10b20100-5b3b-4571-9508-cf3efcd7bbae';
   const MOVE_CHARCTERISTICS_UUID = '10b20102-5b3b-4571-9508-cf3efcd7bbae';
