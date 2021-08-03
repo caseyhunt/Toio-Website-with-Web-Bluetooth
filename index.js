@@ -6,7 +6,7 @@ const SUPPORT_CUBE_NUM = CUBE_ID_ARRAY.length;
 const gCubes = [ undefined, undefined, undefined ];
 
 
-
+var slider1 = document.getElementById("slider1");
 
 
   const SERVICE_UUID              = '10b20100-5b3b-4571-9508-cf3efcd7bbae';
@@ -165,19 +165,22 @@ const gCubes = [ undefined, undefined, undefined ];
   }
 
 
-  const cubeMove = ( moveID ) => {
-      const cube = gCubes[0];
+  const cubeMove = ( moveID, cubeno,speed ) => {
+      const cube = gCubes[cubeno];
       var buf = new Uint8Array([ 0x01, 0x01, 0x01, 0x64, 0x02, 0x01, 0x64]);
-      console.log(moveID);
       // forward
+
+      console.log(speed);
       if(moveID==1){
-      buf = new Uint8Array([ 0x01, 0x01, 0x01, 0x64, 0x02, 0x01, 0x64]);
+      buf = new Uint8Array([ 0x01, 0x01, 0x01, speed, 0x02, 0x01, speed]);
     }else if (moveID==2){
-      buf = new Uint8Array([ 0x01, 0x01, 0x02, 0x64, 0x02, 0x02, 0x64]);
+      buf = new Uint8Array([ 0x01, 0x01, 0x02, speed, 0x02, 0x02, speed]);
     }else if (moveID==3){
-      buf = new Uint8Array([ 0x01, 0x01, 0x02, 0x14, 0x02, 0x01, 0x64]);
+      buf = new Uint8Array([ 0x01, 0x01, 0x02, 0x14, 0x02, 0x01, speed]);
     }else if (moveID==4){
-      buf = new Uint8Array([ 0x01, 0x01, 0x01, 0x64, 0x02, 0x02, 0x14]);
+      buf = new Uint8Array([ 0x01, 0x01, 0x01, speed, 0x02, 0x02, 0x14]);
+    }else if (moveID==5){
+      buf = new Uint8Array([ 0x02, 0x01, 0x01, speed, 0x02, 0x01, speed, 0x50]);
     }
       if( ( cube !== undefined ) && ( cube.moveChar !== undefined ) ){
           cube.moveChar.writeValue( buf );
@@ -190,7 +193,7 @@ const gCubes = [ undefined, undefined, undefined ];
       const cube = gCubes[0];
       const buf = new Uint8Array([ 0x01, 0x01, 0x01, 0x00, 0x02, 0x01, 0x00]);
       if( ( cube !== undefined ) && ( cube.moveChar !== undefined ) ){
-          cube.moveChar.writeValue( buf );
+          setTimeout(() => {cube.moveChar.writeValue( buf )},100);
           console.log('stop');
       }
   }
@@ -216,31 +219,59 @@ const gCubes = [ undefined, undefined, undefined ];
       }
 
       document.getElementById( 'btMoveFW' ).addEventListener( 'mousedown', async ev => {
-        cubeMove( 1 );
+        cubeMove( 1 ,0 , speed1);
       });
-
+      document.getElementById( 'btMoveFW' ).addEventListener( 'touchstart', async ev => {
+          cubeMove( 1,0 , speed1);
+      });
       document.getElementById( 'btMoveFW' ).addEventListener( 'mouseup', async ev => {
         cubeStop();
       });
       document.getElementById( 'btMoveB' ).addEventListener( 'mousedown', async ev => {
-        cubeMove( 2 );
+                   cubeMove( 2 , 0 , speed1);
+      });
+      document.getElementById( 'btMoveB' ).addEventListener( 'touchstart', async ev => {
+          cubeMove( 2, 0 , speed1);
+      });
+      document.getElementById( 'btMoveB' ).addEventListener( 'touchend', async ev => {
+          cubeStop();
       });
       document.getElementById( 'btMoveB' ).addEventListener( 'mouseup', async ev => {
         cubeStop();
       });
       document.getElementById( 'btMoveL' ).addEventListener( 'mousedown', async ev => {
-        cubeMove( 3 );
+                cubeMove( 3, 0 , speed1);
+      });
+      document.getElementById( 'btMoveL' ).addEventListener( 'touchstart', async ev => {
+           cubeMove( 3, 0 ,speed1 );
+      });
+      document.getElementById( 'btMoveL' ).addEventListener( 'touchend', async ev => {
+          cubeStop();
       });
       document.getElementById( 'btMoveL' ).addEventListener( 'mouseup', async ev => {
         cubeStop();
       });
       document.getElementById( 'btMoveR' ).addEventListener( 'mousedown', async ev => {
-        cubeMove( 4 );
+              cubeMove( 4,0 , speed1);
+      });
+      document.getElementById( 'btMoveR' ).addEventListener( 'touchstart', async ev => {
+           cubeMove( 4,0 , speed1);
+      });
+      document.getElementById( 'btMoveR' ).addEventListener( 'touchend', async ev => {
+          cubeStop();
       });
       document.getElementById( 'btMoveR' ).addEventListener( 'mouseup', async ev => {
         cubeStop();
       });
 
+  }
+
+  slider1.oninput = function() {
+  val = parseInt(document.getElementById("slider1").value);
+  speed1 = '0x' + val.toString(16);
+  console.log((254).toString(16))
+  console.log(val);
+  console.log(speed1);
   }
 
   initialize();
